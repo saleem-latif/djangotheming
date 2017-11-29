@@ -1,0 +1,6 @@
+# Requirements for test runs.
+
+ddt                       # data-driven tests
+mock                      # mocking library
+pytest-cov                # pytest extension for code coverage statistics
+pytest-django             # pytest extension for better Django support
