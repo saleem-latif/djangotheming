@@ -1,18 +1,17 @@
 """
-Theming aware template loaders.
+Wrapper for loading templates from "templates" directories for themes.
 """
-from django.template.loaders.filesystem import Loader
-from threadlocals.threadlocals import get_current_request
 
-from ecommerce.theming.helpers import get_all_theme_template_dirs, get_current_theme
+from django.template.loaders.filesystem import Loader as FilesystemLoader
+from theming.thread_locals import get_current_request, get_current_theme
+from theming.models import Theme
 
 
-class ThemeTemplateLoader(Loader):
-    """
-    Filesystem Template loaders to pickup templates from theme directory based on the current site.
-    """
+class Loader(FilesystemLoader):
+
     def get_dirs(self):
-        dirs = super(ThemeTemplateLoader, self).get_dirs()
+        # TODO: Cache result for faster performance
+        dirs = super(Loader, self).get_dirs()
         theme_dirs = []
 
         if get_current_request():
@@ -25,6 +24,9 @@ class ThemeTemplateLoader(Loader):
         else:
             # If we are outside of a request, we are most likely running the compress management command, in which
             # case we should load all directories for all themes.
-            theme_dirs = get_all_theme_template_dirs()
+            for theme in Theme.objects.all():
+                theme_dirs.extend(
+                    theme.template_dirs
+                )
 
         return theme_dirs + dirs

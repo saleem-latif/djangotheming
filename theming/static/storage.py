@@ -1,5 +1,5 @@
 """
-Comprehensive Theming support for Django's collectstatic functionality.
+Theming support for Django's collectstatic functionality.
 See https://docs.djangoproject.com/en/1.8/ref/contrib/staticfiles/
 """
 import os.path
@@ -8,7 +8,8 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import StaticFilesStorage
 from django.utils._os import safe_join
 
-from ecommerce.theming.helpers import get_current_theme, get_theme_base_dir, is_comprehensive_theming_enabled
+from theming.thread_locals import get_current_theme
+import theming
 
 
 class ThemeStorage(StaticFilesStorage):
@@ -17,7 +18,7 @@ class ThemeStorage(StaticFilesStorage):
     """
     # prefix for file path, this prefix is added at the beginning of file path before saving static files during
     # collectstatic command.
-    # e.g. having "edx.org" as prefix will cause files to be saved as "edx.org/images/logo.png"
+    # e.g. having "test-theme" as prefix will cause files to be saved as "test-theme/images/logo.png"
     # instead of "images/logo.png"
     prefix = None
 
@@ -25,6 +26,7 @@ class ThemeStorage(StaticFilesStorage):
                  directory_permissions_mode=None, prefix=None):
 
         self.prefix = prefix
+
         super(ThemeStorage, self).__init__(
             location=location,
             base_url=base_url,
@@ -49,7 +51,7 @@ class ThemeStorage(StaticFilesStorage):
 
         # get theme prefix from site address if if asset is accessed via a url
         if theme:
-            prefix = theme.theme_dir_name
+            prefix = theme.name
 
         # get theme prefix from storage class, if asset is accessed during collectstatic run
         elif self.prefix:
@@ -61,29 +63,29 @@ class ThemeStorage(StaticFilesStorage):
 
         return super(ThemeStorage, self).url(name)
 
-    def themed(self, name, theme):
+    def themed(self, name, theme_name):
         """
         Returns True if given asset override is provided by the given theme otherwise returns False.
         Args:
             name: asset name e.g. 'images/logo.png'
-            theme: theme name e.g. 'red-theme', 'edx.org'
+            theme_name: theme name e.g. 'red-theme', 'test-theme'
 
         Returns:
             True if given asset override is provided by the given theme otherwise returns False
         """
-        if not is_comprehensive_theming_enabled():
+        if not theming.is_enabled():
             return False
 
         # in debug mode check static asset from within the project directory
         if settings.DEBUG:
-            themes_location = get_theme_base_dir(theme, suppress_error=True)
+            themes_location = theming.get_base_dir(theme_name)
             # Nothing can be themed if we don't have a theme location or required params.
-            if not all((themes_location, theme, name)):
+            if not all((themes_location, theme_name, name)):
                 return False
 
             themed_path = "/".join([
                 themes_location,
-                theme,
+                theme_name,
                 "static/"
             ])
             name = name[1:] if name.startswith("/") else name
@@ -91,4 +93,4 @@ class ThemeStorage(StaticFilesStorage):
             return os.path.exists(path)
         # in live mode check static asset in the static files dir defined by "STATIC_ROOT" setting
         else:
-            return self.exists(os.path.join(theme, name))
+            return self.exists(os.path.join(theme_name, name))

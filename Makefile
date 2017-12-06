@@ -25,4 +25,4 @@ requirements: ## Install requirements for the development environment
 	pip-sync requirements/base.txt requirements/dev.txt requirements/test.txt
 
 
-.PHONY: clean help upgrade
+.PHONY: clean help upgrade requirements
