@@ -7,8 +7,7 @@
 attrs==17.3.0             # via pytest
 coverage==4.4.2           # via pytest-cov
 ddt==1.1.1
-django==1.11.7
-funcsigs==1.0.2           # via mock, pytest
+django==2.0
 mock==2.0.0
 path.py==10.5
 pbr==3.1.1                # via mock
@@ -16,6 +15,6 @@ pluggy==0.6.0             # via pytest
 py==1.5.2                 # via pytest
 pytest-cov==2.5.1
 pytest-django==3.1.2
-pytest==3.3.0             # via pytest-cov, pytest-django
+pytest==3.3.1             # via pytest-cov, pytest-django
 pytz==2017.3              # via django
 six==1.11.0               # via mock, pytest

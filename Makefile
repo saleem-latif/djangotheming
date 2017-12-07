@@ -25,4 +25,7 @@ requirements: ## Install requirements for the development environment
 	pip-sync requirements/base.txt requirements/dev.txt requirements/test.txt
 
 
+quality: clean
+	tox -e quality
+
 .PHONY: clean help upgrade requirements

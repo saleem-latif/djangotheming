@@ -4,6 +4,6 @@
 #
 #    pip-compile --output-file requirements/base.txt requirements/base.in
 #
-django==1.11.7
+django==2.0
 path.py==10.5
 pytz==2017.3              # via django

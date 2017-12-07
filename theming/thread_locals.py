@@ -4,7 +4,9 @@ Thread scoped variables.
 """
 
 from threading import local
+
 from theming.exceptions import MiddlewareNotActivatedError
+
 __thread_locals__ = local()
 
 

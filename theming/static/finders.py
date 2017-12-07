@@ -3,9 +3,9 @@ Static file finders for Django.
 https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-STATICFILES_FINDERS
 Yes, this interface is private and undocumented, but we need to access it anyway.
 """
+import os
 from collections import OrderedDict
 
-import os
 from django.contrib.staticfiles import utils
 from django.contrib.staticfiles.finders import BaseFinder
 from django.utils import six

@@ -3,8 +3,9 @@ Wrapper for loading templates from "templates" directories for themes.
 """
 
 from django.template.loaders.filesystem import Loader as FilesystemLoader
-from theming.thread_locals import get_current_request, get_current_theme
+
 from theming.models import Theme
+from theming.thread_locals import get_current_request, get_current_theme
 
 
 class Loader(FilesystemLoader):

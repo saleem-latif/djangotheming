@@ -11,14 +11,12 @@ caniusepython3==6.0.0
 certifi==2017.11.5        # via requests
 chardet==3.0.4            # via requests
 click==6.7                # via pip-tools
-configparser==3.5.0       # via pydocstyle
 coverage==4.4.2           # via pytest-cov
 ddt==1.1.1
 diff-cover==1.0.0
 distlib==0.2.6            # via caniusepython3
-django==1.11.7
+django==2.0
 first==2.0.1              # via pip-tools
-funcsigs==1.0.2           # via mock, pytest
 futures==3.1.1            # via caniusepython3
 idna==2.6                 # via requests
 inflect==0.2.5            # via jinja2-pluralize
@@ -30,7 +28,7 @@ mock==2.0.0
 packaging==16.8           # via caniusepython3
 path.py==10.5
 pbr==3.1.1                # via mock
-pip-tools==1.10.2
+pip-tools==1.11.0
 pkginfo==1.4.1            # via twine
 pluggy==0.6.0             # via pytest, tox
 py==1.5.2                 # via pytest, tox
@@ -40,7 +38,7 @@ pygments==2.2.0           # via diff-cover
 pyparsing==2.2.0          # via packaging
 pytest-cov==2.5.1
 pytest-django==3.1.2
-pytest==3.3.0             # via pytest-cov, pytest-django
+pytest==3.3.1             # via pytest-cov, pytest-django
 pytz==2017.3              # via django
 requests-toolbelt==0.8.0  # via twine
 requests==2.18.4          # via caniusepython3, requests-toolbelt, twine

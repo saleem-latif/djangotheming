@@ -2,8 +2,9 @@
 Core logic for Theming.
 """
 import os
-from path import Path
+
 from django.conf import ImproperlyConfigured, settings
+from path import Path
 
 
 def is_enabled():

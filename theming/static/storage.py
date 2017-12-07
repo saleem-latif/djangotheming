@@ -8,8 +8,8 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import StaticFilesStorage
 from django.utils._os import safe_join
 
-from theming.thread_locals import get_current_theme
 import theming
+from theming.thread_locals import get_current_theme
 
 
 class ThemeStorage(StaticFilesStorage):
