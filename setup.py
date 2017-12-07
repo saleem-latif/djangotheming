@@ -7,7 +7,7 @@ import os
 import re
 import sys
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def get_version(*file_paths):
