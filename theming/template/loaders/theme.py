@@ -9,8 +9,16 @@ from theming.thread_locals import get_current_request, get_current_theme
 
 
 class Loader(FilesystemLoader):
-
+    """
+    Theming aware template loader.
+    """
     def get_dirs(self):
+        """
+        Return all template directories including theme template directories.
+
+        Returns:
+            (list): A list containing template directories.
+        """
         # TODO: Cache result for faster performance
         dirs = super(Loader, self).get_dirs()
         theme_dirs = []

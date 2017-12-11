@@ -1,0 +1,53 @@
+[MASTER]
+ignore = migrations
+persistent = yes
+no-docstring-rgx = (__.*__)|Meta
+load-plugins = caniusepython3.pylint_checker,pylint_django
+
+[REPORTS]
+output-format = text
+files-output = no
+reports = no
+evaluation = 10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
+
+[FORMAT]
+max-line-length = 120
+ignore-long-lines = ^\s*(# )?<?https?://\S+>?$
+single-line-if-stmt = no
+no-space-check = trailing-comma,dict-separator
+max-module-lines = 1000
+indent-string = '    '
+
+[MISCELLANEOUS]
+notes = FIXME,XXX,TODO
+
+[SIMILARITIES]
+min-similarity-lines = 4
+ignore-comments = yes
+ignore-docstrings = yes
+ignore-imports = no
+
+[MESSAGES CONTROL]
+disable =
+	locally-disabled,
+	locally-enabled,
+	too-few-public-methods,
+	bad-builtin,
+	star-args,
+	abstract-class-not-used,
+	abstract-class-little-used,
+	no-init,
+	fixme,
+	logging-format-interpolation,
+	too-many-lines,
+	no-self-use,
+	too-many-ancestors,
+	too-many-instance-attributes,
+	too-few-public-methods,
+	too-many-public-methods,
+	too-many-return-statements,
+	too-many-branches,
+	too-many-arguments,
+	too-many-locals,
+	unused-wildcard-import,
+	duplicate-code

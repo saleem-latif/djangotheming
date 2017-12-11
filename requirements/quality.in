@@ -6,3 +6,4 @@ pycodestyle               # PEP 8 compliance validation
 pydocstyle                # PEP 257 compliance validation
 pep8					  # PEP 8 compliance validation
 pylint					  # Pylint validations
+pylint-django             # Enabling django support in pylint

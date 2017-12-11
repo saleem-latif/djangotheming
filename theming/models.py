@@ -1,3 +1,7 @@
+"""
+This module contains model definitions for theming app.
+"""
+
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
@@ -31,23 +35,32 @@ class Theme(models.Model):
     def __hash__(self):
         return hash((self.name, self.path))
 
-    def __unicode__(self):
+    def __str__(self):
         return u"<Theme: {name} at '{path}'>".format(name=self.name, path=self.path)
 
     def __repr__(self):
-        return self.__unicode__()
+        return self.__str__()
 
     @property
     def base_dir(self):
+        """
+        Base directory path for the theme.
+        """
         # TODO: handle theme not found
         return Path(theming.get_base_dir(str(self.name)))
 
     @property
     def path(self):
+        """
+        Directory path for the theme.
+        """
         return self.base_dir / self.name
 
     @property
     def template_dirs(self):
+        """
+        List of all template directories of the theme.
+        """
         return [
             self.path / 'templates',
         ]

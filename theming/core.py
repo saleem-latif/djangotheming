@@ -54,7 +54,6 @@ def get_theme_base_dirs():
          (list): list of theme base directories
     """
     theme_dirs = settings.THEMING['DIRS']
-    # TODO: handle invalid settings, i.e. missing 'DIRS'
 
     if not isinstance(theme_dirs, list):
         raise ImproperlyConfigured("THEMING['DIRS'] must be a list.")
@@ -128,7 +127,7 @@ def get_themes(themes_dir=None):
     themes_dirs = [Path(themes_dir)] if themes_dir else get_theme_base_dirs()
     # pick only directories and discard files in themes directory
     themes = []
-    for themes_dir in themes_dirs:
-        themes.extend([Theme(name=name) for name in get_theme_dirs(themes_dir)])
+    for _dir in themes_dirs:
+        themes.extend([Theme(name=name) for name in get_theme_dirs(_dir)])
 
     return themes

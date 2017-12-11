@@ -6,6 +6,8 @@ Yes, this interface is private and undocumented, but we need to access it anyway
 import os
 from collections import OrderedDict
 
+from django.conf import settings
+from django.core.checks import Error
 from django.contrib.staticfiles import utils
 from django.contrib.staticfiles.finders import BaseFinder
 from django.utils import six
@@ -40,6 +42,36 @@ class ThemeFilesFinder(BaseFinder):
                 self.themes.append(theme.name)
 
         super(ThemeFilesFinder, self).__init__(*args, **kwargs)
+
+    def check(self, **kwargs):
+        errors = []
+        if 'DIRS' not in settings.THEMING:
+            errors.append(Error(
+                'The THEMING["DIRS"] setting must be populated.',
+                id='theming.static.E001',
+            ))
+        elif not isinstance(settings.THEMING['DIRS'], (list, tuple)):
+            errors.append(Error(
+                'The THEMING["DIRS"] setting is not a tuple or list.',
+                hint='Perhaps you forgot a trailing comma?',
+                id='theming.static.E002',
+            ))
+        elif not all([isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']]):
+            errors.append(Error(
+                'THEMING["DIRS"] must contain only strings.',
+                id='theming.static.E003',
+            ))
+        elif not all([theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']]):
+            errors.append(Error(
+                'THEMING["DIRS"] must contain only absolute paths to themes dirs.',
+                id='theming.static.E004',
+            ))
+        elif not all([os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']]):
+            errors.append(Error(
+                'THEMING["DIRS"] must contain valid paths.',
+                id='theming.static.E005',
+            ))
+        return errors
 
     def list(self, ignore_patterns):
         """
