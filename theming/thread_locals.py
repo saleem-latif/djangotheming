@@ -5,7 +5,7 @@ Thread scoped variables.
 
 from threading import local
 
-from theming.exceptions import MiddlewareNotActivatedError
+from theming.exceptions import MiddlewareNotActivated
 
 __thread_locals__ = local()
 
@@ -55,7 +55,7 @@ def set_request_variable(key, value):
     """
     request = get_current_request()
     if not request:
-        raise MiddlewareNotActivatedError(
+        raise MiddlewareNotActivated(
             "Unable to get request object. Make sure CurrentRequestMiddleware is installed",
         )
 
@@ -79,7 +79,7 @@ def get_request_variable(key, default=None):
     """
     request = get_current_request()
     if not request:
-        raise MiddlewareNotActivatedError(
+        raise MiddlewareNotActivated(
             "Unable to get request object. Make sure CurrentRequestMiddleware is installed",
         )
 

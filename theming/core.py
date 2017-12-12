@@ -5,7 +5,7 @@ import os
 
 from path import Path
 
-from django.conf import ImproperlyConfigured, settings
+from django.conf import settings
 
 
 def is_enabled():
@@ -42,12 +42,6 @@ def get_theme_base_dirs():
     """
     Return a list of all directories that contain themes.
 
-    Raises:
-        ImproperlyConfigured - exception is raised if
-            1 - THEMING['DIRS'] is not a string
-            2 - THEMING['DIRS'] is not an absolute path
-            3 - path specified by THEMING['DIRS'] does not exist
-
     Example:
         >> get_theme_base_dirs()
         ['/var/themes/']
@@ -55,18 +49,7 @@ def get_theme_base_dirs():
     Returns:
          (list): list of theme base directories
     """
-    theme_dirs = settings.THEMING['DIRS']
-
-    if not isinstance(theme_dirs, list):
-        raise ImproperlyConfigured("THEMING['DIRS'] must be a list.")
-    if not all([isinstance(theme_dir, str) for theme_dir in theme_dirs]):
-        raise ImproperlyConfigured("THEMING['DIRS'] must contain only strings.")
-    if not all([theme_dir.startswith("/") for theme_dir in theme_dirs]):
-        raise ImproperlyConfigured("THEMING['DIRS'] must contain only absolute paths to themes dirs.")
-    if not all([os.path.isdir(theme_dir) for theme_dir in theme_dirs]):
-        raise ImproperlyConfigured("THEMING['DIRS'] must contain valid paths.")
-
-    return [Path(theme_dir) for theme_dir in theme_dirs]
+    return [Path(theme_dir) for theme_dir in settings.THEMING['DIRS']]
 
 
 def get_base_dir(name):
