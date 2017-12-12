@@ -1,5 +1,5 @@
 """
-This module contains middleware defined by the theming app.
+Module to contain middleware defined by the theming app.
 """
 
 from django.utils.deprecation import MiddlewareMixin

@@ -9,8 +9,12 @@ class ThemingConfig(AppConfig):
     """
     Basic config class for theming app.
     """
+
     name = 'theming'
 
     def ready(self):
+        """
+        Perform validations on theme settings.
+        """
         # TODO: Add all theme validations here.
         pass

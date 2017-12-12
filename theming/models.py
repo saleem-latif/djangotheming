@@ -1,30 +1,33 @@
 """
-This module contains model definitions for theming app.
+Module to contain model definitions for theming app.
 """
+
+from path import Path
 
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
-from path import Path
 
 import theming
 
 
 class Theme(models.Model):
     """
-    This is where the information about the site's theme gets stored to the db.
+    Django ORM model for Theme db table.
 
     Fields:
         site (ForeignKey): Foreign Key field pointing to django Site model
         theme_dir_name (CharField): Contains directory name for any site's theme (e.g. 'red-theme')
     """
+
     site = models.OneToOneField(Site, related_name='theme', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def __eq__(self, other):
         """
-        Returns True if given theme is same as the self
-        Args:
+        Return True if given theme is same as the self.
+
+        Arguments:
             other: Theme object to compare with self
 
         Returns:
@@ -33,18 +36,27 @@ class Theme(models.Model):
         return (self.name, self.path) == (other.name, other.path)
 
     def __hash__(self):
+        """
+        Return unique hash for the theme.
+        """
         return hash((self.name, self.path))
 
     def __str__(self):
+        """
+        Return unique readable string for the theme.
+        """
         return u"<Theme: {name} at '{path}'>".format(name=self.name, path=self.path)
 
     def __repr__(self):
+        """
+        Return unique readable string for the theme.
+        """
         return self.__str__()
 
     @property
     def base_dir(self):
         """
-        Base directory path for the theme.
+        Return base directory path for the theme.
         """
         # TODO: handle theme not found
         return Path(theming.get_base_dir(str(self.name)))
@@ -52,14 +64,14 @@ class Theme(models.Model):
     @property
     def path(self):
         """
-        Directory path for the theme.
+        Return full directory path for the theme.
         """
         return self.base_dir / self.name
 
     @property
     def template_dirs(self):
         """
-        List of all template directories of the theme.
+        Return list of all template directories of the theme.
         """
         return [
             self.path / 'templates',
@@ -68,10 +80,12 @@ class Theme(models.Model):
     @staticmethod
     def get_theme(site):
         """
-        Get SiteTheme object for given site, returns default site theme if it can not
-        find a theme for the given site and `DEFAULT_SITE_THEME` setting has a proper value.
+        Return SiteTheme object for given site.
 
-        Args:
+        Return default site theme if theme for the given site can not be found
+        and `DEFAULT_SITE_THEME` setting has a proper value.
+
+        Arguments:
             site (django.contrib.sites.models.Site): site object related to the current site.
 
         Returns:

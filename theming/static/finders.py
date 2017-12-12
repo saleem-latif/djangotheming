@@ -7,9 +7,9 @@ import os
 from collections import OrderedDict
 
 from django.conf import settings
-from django.core.checks import Error
 from django.contrib.staticfiles import utils
 from django.contrib.staticfiles.finders import BaseFinder
+from django.core.checks import Error
 from django.utils import six
 
 import theming

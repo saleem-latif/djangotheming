@@ -39,7 +39,7 @@ class ThemeStorage(StaticFilesStorage):
         Returns url of the asset, themed url will be returned if the asset is themed otherwise default
         asset url will be returned.
 
-        Args:
+        Arguments:
             name: name of the asset, e.g. 'images/logo.png'
 
         Returns:
@@ -66,7 +66,8 @@ class ThemeStorage(StaticFilesStorage):
     def themed(self, name, theme_name):
         """
         Returns True if given asset override is provided by the given theme otherwise returns False.
-        Args:
+
+        Arguments:
             name: asset name e.g. 'images/logo.png'
             theme_name: theme name e.g. 'red-theme', 'test-theme'
 

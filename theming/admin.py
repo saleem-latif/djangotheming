@@ -11,5 +11,6 @@ class ThemeAdmin(admin.ModelAdmin):
     """
     Admin UI definitions for `Theme` model.
     """
+
     list_display = ('site', 'name')
     search_fields = ('site__domain', 'name')

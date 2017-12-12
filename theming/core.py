@@ -3,8 +3,9 @@ Core logic for Theming.
 """
 import os
 
-from django.conf import ImproperlyConfigured, settings
 from path import Path
+
+from django.conf import ImproperlyConfigured, settings
 
 
 def is_enabled():
@@ -23,10 +24,11 @@ def get_theme_dirs(themes_dir=None):
 
 def is_theme_dir(_dir):
     """
-    Returns true if given dir is a theme directory, returns False otherwise.
+    Return true if given dir is a theme directory, returns False otherwise.
+
     A theme dir must have subdirectory 'static' or 'templates' or both.
 
-    Args:
+    Arguments:
         _dir: directory path to check for a theme
 
     Returns:
@@ -69,10 +71,11 @@ def get_theme_base_dirs():
 
 def get_base_dir(name):
     """
-    Returns absolute path to the directory that contains the given theme.
+    Return absolute path to the directory that contains the given theme.
 
-    Args:
+    Arguments:
         name (str): theme directory name to get base path for
+
     Returns:
         (str): Base directory that contains the given theme
     """
@@ -110,10 +113,12 @@ def get_all_theme_template_dirs():
 def get_themes(themes_dir=None):
     """
     Return a list of all themes known to the system.
+
     If themes_dir is given then return only the themes residing inside that directory.
 
-    Args:
+    Arguments:
         themes_dir (str): (Optional) Path to themes base directory
+
     Returns:
         list of themes known to the system.
     """
