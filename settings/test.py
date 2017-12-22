@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from path import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'theming'
 ]
 
 MIDDLEWARE = [
@@ -47,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'theming.middleware.CurrentRequestMiddleware',
+    'theming.middleware.CurrentThemeMiddleware',
 ]
 
 ROOT_URLCONF = 'theming.urls'
@@ -119,9 +125,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = []
+STATICFILES_STORAGE = "theming.static.storage.ThemeStorage"
+
+STATICFILES_FINDERS = (
+    'theming.static.finders.ThemeFilesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 
 THEMING = {
     'ENABLED': True,
     'DEFAULT': 'test-theme',
-    'DIRS': [],
+    'DIRS': [
+        Path(BASE_DIR) / 'tests' / 'themes',
+    ],
 }

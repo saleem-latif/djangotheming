@@ -28,4 +28,8 @@ requirements: ## Install requirements for the development environment
 quality: clean
 	tox -e quality
 
+test: clean ## run tests in the current virtualenv
+	pip install -qr requirements/test.txt --exists-action w
+	py.test
+
 .PHONY: clean help upgrade requirements

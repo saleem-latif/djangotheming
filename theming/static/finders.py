@@ -30,16 +30,17 @@ class ThemeFilesFinder(BaseFinder):
         # Mapping of theme names to storage instances
         self.storages = OrderedDict()
 
-        themes = theming.get_themes()
-        for theme in themes:
-            theme_storage = self.storage_class(
-                os.path.join(theme.path, self.source_dir),
-                prefix=theme.name,
-            )
+        if theming.is_enabled():
+            themes = theming.get_themes()
+            for theme in themes:
+                theme_storage = self.storage_class(
+                    os.path.join(theme.path, self.source_dir),
+                    prefix=theme.name,
+                )
 
-            self.storages[theme.name] = theme_storage
-            if theme.name not in self.themes:
-                self.themes.append(theme.name)
+                self.storages[theme.name] = theme_storage
+                if theme.name not in self.themes:
+                    self.themes.append(theme.name)
 
         super(ThemeFilesFinder, self).__init__(*args, **kwargs)
 

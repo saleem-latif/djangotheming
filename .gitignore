@@ -96,3 +96,5 @@ ENV/
 .ropeproject
 
 .idea/
+
+tests/__init__.py

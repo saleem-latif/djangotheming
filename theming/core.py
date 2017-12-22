@@ -15,13 +15,6 @@ def is_enabled():
     return settings.THEMING.get('ENABLED', False)
 
 
-def get_theme_dirs(themes_dir=None):
-    """
-    Return all theme dirs in given dir.
-    """
-    return [_dir for _dir in os.listdir(themes_dir) if is_theme_dir(themes_dir / _dir)]
-
-
 def is_theme_dir(_dir):
     """
     Return true if given dir is a theme directory, returns False otherwise.
@@ -109,13 +102,13 @@ def get_themes(themes_dir=None):
     # Importing here to avoid circular import
     from theming.models import Theme
 
-    if not is_enabled():
-        return []
-
     themes_dirs = [Path(themes_dir)] if themes_dir else get_theme_base_dirs()
     # pick only directories and discard files in themes directory
     themes = []
+
     for _dir in themes_dirs:
-        themes.extend([Theme(name=name) for name in get_theme_dirs(_dir)])
+        themes.extend(
+            [Theme(name=name) for name in os.listdir(_dir) if is_theme_dir(Path(_dir) / name)]
+        )
 
     return themes
