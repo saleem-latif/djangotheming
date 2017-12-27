@@ -5,7 +5,7 @@
 #    pip-compile --output-file requirements/dev.txt requirements/base.in requirements/dev.in requirements/quality.in requirements/test.in
 #
 argparse==1.4.0           # via caniusepython3
-astroid==1.5.3            # via pylint, pylint-plugin-utils
+astroid==1.6.0            # via pylint, pylint-plugin-utils
 attrs==17.3.0             # via pytest
 backports.functools-lru-cache==1.4  # via caniusepython3
 caniusepython3==6.0.0
@@ -14,9 +14,11 @@ chardet==3.0.4            # via requests
 click==6.7                # via pip-tools
 coverage==4.4.2           # via pytest-cov
 ddt==1.1.1
-diff-cover==1.0.0
+diff-cover==1.0.2
 distlib==0.2.6            # via caniusepython3
 django==2.0
+factory-boy==2.9.2
+faker==0.8.8              # via factory-boy
 first==2.0.1              # via pip-tools
 futures==3.1.1            # via caniusepython3
 idna==2.6                 # via requests
@@ -41,16 +43,18 @@ pydocstyle==2.1.1
 pygments==2.2.0           # via diff-cover
 pylint-django==0.7.2
 pylint-plugin-utils==0.2.6  # via pylint-django
-pylint==1.7.5
+pylint==1.8.1
 pyparsing==2.2.0          # via packaging
 pytest-cov==2.5.1
 pytest-django==3.1.2
 pytest==3.3.1             # via pytest-cov, pytest-django
+python-dateutil==2.6.1    # via faker
 pytz==2017.3              # via django
 requests-toolbelt==0.8.0  # via twine
 requests==2.18.4          # via caniusepython3, requests-toolbelt, twine
-six==1.11.0               # via astroid, diff-cover, mock, packaging, pip-tools, pydocstyle, pylint, pytest, tox
+six==1.11.0               # via astroid, diff-cover, faker, mock, packaging, pip-tools, pydocstyle, pylint, pytest, python-dateutil, tox
 snowballstemmer==1.2.1    # via pydocstyle
+text-unidecode==1.1       # via faker
 tox-battery==0.5
 tox==2.9.1
 tqdm==4.19.5              # via twine
