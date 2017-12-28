@@ -10,18 +10,18 @@ from theming.exceptions import MiddlewareNotActivated
 __thread_locals__ = local()
 
 
-def set_thread_variable(key, val):
+def set_thread_variable(key, value):
     """
     Set thread variable with the given key, value pair.
 
     Arguments:
         key (str): Name of the thread variable.
-        val (object): Value of the thread variable.
+        value (object): Value of the thread variable.
 
     Example:
         >>> set_thread_variable('current_theme_name', "test-theme")
     """
-    setattr(__thread_locals__, key, val)
+    setattr(__thread_locals__, key, value)
 
 
 def get_thread_variable(key, default=None):
