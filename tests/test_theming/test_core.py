@@ -8,7 +8,8 @@ from path import Path
 
 from django.test import override_settings
 
-from test_utils import INVALID_THEME_DIR, TEST_THEME_DIR, TEST_THEME, INVALID_THEME, TEST_THEME_TEMPLATES_DIR
+from test_utils import INVALID_THEME_DIR, TEST_THEME_DIR, TEST_THEME, INVALID_THEME, TEST_THEME_TEMPLATES_DIRS, \
+    BLUE_THEME, BLUE_THEME_TEMPLATES_DIRS, THEME_BASE_DIR
 from test_utils.testcases import TestCase
 from theming import core
 from theming import models
@@ -55,7 +56,7 @@ class CoreTests(TestCase):
         """
         self.assertListEqual(
             core.get_theme_base_dirs(),
-            [Path(os.path.dirname(TEST_THEME_DIR))]
+            [THEME_BASE_DIR]
         )
 
     @ddt.data(
@@ -77,21 +78,21 @@ class CoreTests(TestCase):
         Verify that get_all_theme_template_dirs works as expected.
         """
         self.assertListEqual(
-            core.get_all_theme_template_dirs(),
-            [TEST_THEME_TEMPLATES_DIR]
+            sorted(core.get_all_theme_template_dirs()),
+            sorted(TEST_THEME_TEMPLATES_DIRS + BLUE_THEME_TEMPLATES_DIRS)
         )
 
     @ddt.data(
-        (os.path.dirname(TEST_THEME_DIR), [models.Theme(name=TEST_THEME)]),
+        (THEME_BASE_DIR, [models.Theme(name=BLUE_THEME), models.Theme(name=TEST_THEME)]),
         (INVALID_THEME_DIR, []),
-        (None, [models.Theme(name=TEST_THEME)]),
+        (None, [models.Theme(name=BLUE_THEME), models.Theme(name=TEST_THEME)]),
     )
     @ddt.unpack
     def test_get_themes(self, themes_dir, expected):
         """
         Verify that get_themes works as expected.
         """
-        self.assertListEqual(
-            core.get_themes(themes_dir),
-            expected
+        self.assertEqual(
+            set(core.get_themes(themes_dir)),
+            set(expected)
         )

@@ -91,17 +91,10 @@ class Theme(models.Model):
         Returns:
             SiteTheme object for given site or a default site set by `DEFAULT_SITE_THEME`
         """
-        if not site:
-            return None
-
-        theme = None
-
         try:
-            theme = site.theme
+            return site.theme
         except Theme.DoesNotExist:
-            pass
-
-        if (not theme) and settings.THEMING.get('DEFAULT', None):
-            theme = Theme(site=site, name=settings.THEMING['DEFAULT'])
-
-        return theme
+            if settings.THEMING.get('DEFAULT', None):
+                return Theme(site=site, name=settings.THEMING['DEFAULT'])
+            else:
+                return None
