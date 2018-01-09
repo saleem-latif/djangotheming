@@ -127,6 +127,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = []
 STATICFILES_STORAGE = "theming.static.storage.ThemeStorage"
+STATIC_ROOT = Path(BASE_DIR) / 'tests' / 'static_root'
 
 STATICFILES_FINDERS = (
     'theming.static.finders.ThemeFilesFinder',
