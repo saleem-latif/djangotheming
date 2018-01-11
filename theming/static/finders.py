@@ -113,3 +113,4 @@ class ThemeFilesFinder(BaseFinder):
                 matched_path = storage.path(path)
                 if matched_path:
                     return matched_path
+        return None

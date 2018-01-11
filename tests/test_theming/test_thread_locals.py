@@ -8,12 +8,20 @@ import ddt
 
 from django.test import RequestFactory
 
-from test_utils.testcases import TestCase
 from test_utils import factories
+from test_utils.testcases import TestCase
 from theming import thread_locals
 from theming.exceptions import MiddlewareNotActivated
-from theming.thread_locals import set_thread_variable, get_thread_variable, get_request_variable, set_current_request, \
-    set_request_variable, get_current_request, get_current_theme, set_current_theme
+from theming.thread_locals import (
+    get_current_request,
+    get_current_theme,
+    get_request_variable,
+    get_thread_variable,
+    set_current_request,
+    set_current_theme,
+    set_request_variable,
+    set_thread_variable,
+)
 
 
 @ddt.ddt
@@ -43,7 +51,7 @@ class ThreadLocalsTests(TestCase):
         """
         thread_locals.__thread_locals__ = local()
 
-    def assertThreadVariable(self, key, value, msg=None):
+    def assert_thread_variable(self, key, value, msg=None):
         """
         Assert that current thread contains variable with
         given key and its value is the same as given value.
@@ -54,7 +62,7 @@ class ThreadLocalsTests(TestCase):
             msg=msg,
         )
 
-    def assertRequestVariable(self, key, value, msg=None):
+    def assert_request_variable(self, key, value, msg=None):
         """
         Assert that current request object contains variable with
         given key and its value is the same as given value.
@@ -81,7 +89,7 @@ class ThreadLocalsTests(TestCase):
         """
         # Setup test case.
         test_setup()
-        self.assertThreadVariable(key, expected)
+        self.assert_thread_variable(key, expected)
 
     @ddt.data(
         (lambda: None, 'key', None),
@@ -116,9 +124,9 @@ class ThreadLocalsTests(TestCase):
         # Setup test case.
         test_setup()
 
-        self.assertRequestVariable(key, expected)
+        self.assert_request_variable(key, expected)
 
-    def test_set_request_variable_raises_exception(self):
+    def test_set_request_variable_raises_exception(self):  # pylint: disable=invalid-name
         """
         Verify set_request_variable raises exception if request object is not saved in local thread.
         """
@@ -147,7 +155,7 @@ class ThreadLocalsTests(TestCase):
             expected,
         )
 
-    def test_get_request_variable_raises_exception(self):
+    def test_get_request_variable_raises_exception(self):  # pylint: disable=invalid-name
         """
         Verify get_request_variable raises exception if request object is not saved in local thread.
         """
@@ -162,7 +170,7 @@ class ThreadLocalsTests(TestCase):
         Verify set_current_request works as expected.
         """
         set_current_request(self.request)
-        self.assertThreadVariable('request', self.request)
+        self.assert_thread_variable('request', self.request)
 
     def test_get_current_request(self):
         """
@@ -181,7 +189,7 @@ class ThreadLocalsTests(TestCase):
         """
         theme = factories.ThemeFactory()
         set_current_theme(theme)
-        self.assertRequestVariable('theme', theme)
+        self.assert_request_variable('theme', theme)
 
     def test_get_current_theme(self):
         """

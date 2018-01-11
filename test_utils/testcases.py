@@ -8,4 +8,5 @@ class TestCase(DjangoTestCase):
     """
     Base test case for theme tests.
     """
+
     pass

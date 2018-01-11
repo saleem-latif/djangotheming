@@ -6,9 +6,9 @@ import ddt
 from django.core.checks import Error
 from django.test import override_settings
 
-from theming.static.finders import ThemeFilesFinder
-from test_utils import TEST_THEME_DIR
+from test_utils import BLUE_THEME, BLUE_THEME_STATIC_FILES_DIR, TEST_THEME, TEST_THEME_DIR, TEST_THEME_STATIC_FILES_DIR
 from test_utils.testcases import TestCase
+from theming.static.finders import ThemeFilesFinder
 
 
 @ddt.ddt
@@ -45,13 +45,19 @@ class TestThemeFilesFinder(TestCase):
 
         self.assertEqual(matches[0], TEST_THEME_DIR / "static" / "styles.css")
 
-    def test_find_in_theme(self):
+    @ddt.data(
+        ('test-theme', 'styles.css', TEST_THEME_DIR / "static" / "styles.css"),
+        ('test-theme', 'images/spinning.gif', None),
+    )
+    @ddt.unpack
+    def test_find_in_theme(self, theme, asset, expected):
         """
         Verify find in theme method of finders returns asset from specified theme
         """
-        match = self.finder.find_in_theme("test-theme", "styles.css")
-
-        self.assertEqual(match, TEST_THEME_DIR / "static" / "styles.css")
+        self.assertEqual(
+            self.finder.find_in_theme(theme, asset),
+            expected
+        )
 
     @ddt.data(
         (
@@ -109,10 +115,26 @@ class TestThemeFilesFinder(TestCase):
     @ddt.unpack
     def test_check(self, theming_overrides, expected):
         """
-        Verify find in theme method of finders returns asset from specified theme
+        Verify check returns appropriate errors in case of invalid settings.
         """
         with override_settings(THEMING=theming_overrides):
             self.assertEqual(
                 self.finder.check(),
                 expected,
             )
+
+    def test_list(self):
+        """
+        Verify list returns all themed assets and corresponding storage class.
+        """
+        expected = {
+            ('styles.css', TEST_THEME, TEST_THEME_STATIC_FILES_DIR),
+            ('styles.css', BLUE_THEME, BLUE_THEME_STATIC_FILES_DIR),
+        }
+        results = self.finder.list(ignore_patterns=None)
+        theme_assets = set(map(lambda item: (item[0], item[1].prefix, item[1].location), results))
+
+        self.assertEqual(
+            theme_assets,
+            expected
+        )

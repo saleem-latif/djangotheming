@@ -2,12 +2,15 @@
 Module containing tests for ThemingConfig
 """
 import ddt
+from six import assertRaisesRegex
+
 from django.apps import apps
 from django.conf import settings
 from django.test import override_settings
 
-from theming.exceptions import ImproperlyConfigured
 from test_utils.testcases import TestCase
+from theming.exceptions import ImproperlyConfigured
+
 
 @ddt.ddt
 class ThemingConfigTests(TestCase):
@@ -60,18 +63,19 @@ class ThemingConfigTests(TestCase):
         Verify ThemingConfig ready works as expected.
         """
         with override_settings(**settings_override):
-            with self.assertRaisesRegexp(exception, message_regex):
+            with assertRaisesRegex(self, exception, message_regex):
                 self.theming_config.ready()
 
     @override_settings()
-    def test_ready_missing_theming_settings(self):
+    def test_ready_with_missing_theme_settings(self):  # pylint: disable=invalid-name
         """
-        Verify that ThemingConfig ready raises ImproperlyConfigured exception if THEMIG settings is not set.
+        Verify that ThemingConfig ready raises ImproperlyConfigured exception if THEMING setting is not set.
         """
         del settings.THEMING
-        with self.assertRaisesRegexp(
-                ImproperlyConfigured,
-                r'"THEMING" setting not set in django settings file. '
-                r'If you are not using theming then remove it from INSTALLED_APPS.'
+        with assertRaisesRegex(
+            self,
+            ImproperlyConfigured,
+            r'"THEMING" setting not set in django settings file. '
+            r'If you are not using theming then remove it from INSTALLED_APPS.'
         ):
             self.theming_config.ready()

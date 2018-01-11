@@ -1,5 +1,5 @@
 """
-Test utils
+Utility functions for theming tests.
 """
 
 import os
@@ -7,6 +7,7 @@ from path import Path
 
 from django.conf import settings
 
+TEMPLATE_DIR = Path(settings.BASE_DIR) / 'templates'
 THEME_BASE_DIR = settings.THEMING['DIRS'][0]
 
 # Test theme constants

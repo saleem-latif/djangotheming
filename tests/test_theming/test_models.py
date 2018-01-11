@@ -5,14 +5,13 @@ from functools import partial
 
 import ddt
 
-from django.test import override_settings
 from django.conf import settings
+from django.test import override_settings
 
-from theming.models import Theme
-
+from test_utils import TEST_THEME_TEMPLATES_DIRS, THEME_BASE_DIR
+from test_utils.factories import SiteFactory, ThemeFactory
 from test_utils.testcases import TestCase
-from test_utils.factories import ThemeFactory, SiteFactory
-from test_utils import THEME_BASE_DIR, TEST_THEME_TEMPLATES_DIRS
+from theming.models import Theme
 
 
 @ddt.ddt
@@ -125,29 +124,29 @@ class TestModels(TestCase):
             self.theme
         )
 
-    def test_get_theme_when_theme_does_not_exist(self):
+    def test_get_theme_when_theme_does_not_exist(self):  # pylint: disable=invalid-name
         """
         Validate get_theme returns default theme if site has no associated theme.
         """
         site = SiteFactory(domain='blue-theme')
 
         # Make sure there is not theme with the above site
-        Theme.objects.filter(site=site).delete()
+        Theme.objects.filter(site=site).delete()  # pylint: disable=no-member
 
         self.assertEqual(
             Theme.get_theme(site),
             Theme(name=settings.THEMING['DEFAULT'], site=site)
         )
 
-    def test_get_theme_when_theme_does_not_exist_and_no_default_theme(self):
+    def test_get_theme_when_theme_does_not_exist_and_no_default_theme(self):  # pylint: disable=invalid-name
         """
         Validate get_theme returns Noneif site has no associated theme and there is not default theme.
         """
         site = SiteFactory(domain='blue-theme')
 
         # Make sure there is not theme with the above site
-        Theme.objects.filter(site=site).delete()
-        
+        Theme.objects.filter(site=site).delete()  # pylint: disable=no-member
+
         with override_settings(THEMING=dict(settings.THEMING, DEFAULT=None)):
             self.assertEqual(
                 Theme.get_theme(site),

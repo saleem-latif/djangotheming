@@ -2,7 +2,7 @@
 ignore = migrations
 persistent = yes
 no-docstring-rgx = (__.*__)|Meta
-load-plugins = caniusepython3.pylint_checker,pylint_django
+load-plugins = caniusepython3.pylint_checker
 
 [REPORTS]
 output-format = text

@@ -24,4 +24,5 @@ class ImproperlyConfigured(ThemeException, DjangoImproperlyConfigured):
     """
     Theming is somehow improperly configured.
     """
+
     pass

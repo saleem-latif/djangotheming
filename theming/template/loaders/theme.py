@@ -4,7 +4,7 @@ Wrapper for loading templates from "templates" directories for themes.
 
 from django.template.loaders.filesystem import Loader as FilesystemLoader
 
-from theming.models import Theme
+from theming import get_themes
 from theming.thread_locals import get_current_request, get_current_theme
 
 
@@ -31,9 +31,8 @@ class Loader(FilesystemLoader):
             if theme:
                 theme_dirs = theme.template_dirs
         else:
-            # If we are outside of a request, we are most likely running the compress management command, in which
-            # case we should load all directories for all themes.
-            for theme in Theme.objects.all():
+            # If we are outside of a request, we should load all directories for all themes.
+            for theme in get_themes():
                 theme_dirs.extend(
                     theme.template_dirs
                 )

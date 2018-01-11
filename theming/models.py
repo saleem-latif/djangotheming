@@ -6,6 +6,7 @@ from path import Path
 
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 import theming
@@ -93,8 +94,7 @@ class Theme(models.Model):
         """
         try:
             return site.theme
-        except Theme.DoesNotExist:
+        except ObjectDoesNotExist:
             if settings.THEMING.get('DEFAULT', None):
                 return Theme(site=site, name=settings.THEMING['DEFAULT'])
-            else:
-                return None
+            return None

@@ -3,14 +3,13 @@ Tests for theme static files storage classes.
 """
 import ddt
 
-from django.test import TestCase, override_settings
 from django.conf import settings
+from django.test import TestCase, override_settings
 
-from theming.static.storage import ThemeStorage
-
-from test_utils import TEST_THEME_STATIC_FILES_DIR, TEST_THEME, BLUE_THEME
-from test_utils.utils import setup_current_theme
+from test_utils import BLUE_THEME, TEST_THEME, TEST_THEME_STATIC_FILES_DIR
 from test_utils.factories import ThemeFactory
+from test_utils.utils import cleanup_current_request_and_theme, setup_current_theme
+from theming.static.storage import ThemeStorage
 
 
 @ddt.ddt
@@ -28,6 +27,7 @@ class TestThemeStorageDebugMode(TestCase):
         self.storage = ThemeStorage(location=TEST_THEME_STATIC_FILES_DIR)
         self.theme = ThemeFactory(name=TEST_THEME)
         setup_current_theme(self.theme)
+        self.addCleanup(cleanup_current_request_and_theme)
 
     @ddt.data(
         (TEST_THEME, 'styles.css', True),
@@ -46,7 +46,7 @@ class TestThemeStorageDebugMode(TestCase):
         )
 
     @override_settings(THEMING=dict(settings.THEMING, ENABLED=False))
-    def test_themed_with_theming_disabled(self):
+    def test_themed_with_theming_disabled(self):  # pylint: disable=invalid-name
         """
         Verify storage returns True on themed assets
         """
@@ -101,7 +101,7 @@ class TestThemeStorageProductionMode(TestCase):
         )
 
     @override_settings(THEMING=dict(settings.THEMING, ENABLED=False))
-    def test_themed_with_theming_disabled(self):
+    def test_themed_with_theming_disabled(self):  # pylint: disable=invalid-name
         """
         Verify storage returns True on themed assets
         """
@@ -127,6 +127,7 @@ class TestThemeStorageCollectStaticMode(TestCase):
 
         # In collectstatic run there won't be a current theme.
         setup_current_theme(None)
+        self.addCleanup(cleanup_current_request_and_theme)
 
     @ddt.data(
         ('styles.css', settings.STATIC_URL + TEST_THEME + '/styles.css'),

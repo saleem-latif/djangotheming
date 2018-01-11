@@ -8,11 +8,18 @@ from path import Path
 
 from django.test import override_settings
 
-from test_utils import INVALID_THEME_DIR, TEST_THEME_DIR, TEST_THEME, INVALID_THEME, TEST_THEME_TEMPLATES_DIRS, \
-    BLUE_THEME, BLUE_THEME_TEMPLATES_DIRS, THEME_BASE_DIR
+from test_utils import (
+    BLUE_THEME,
+    BLUE_THEME_TEMPLATES_DIRS,
+    INVALID_THEME,
+    INVALID_THEME_DIR,
+    TEST_THEME,
+    TEST_THEME_DIR,
+    TEST_THEME_TEMPLATES_DIRS,
+    THEME_BASE_DIR,
+)
 from test_utils.testcases import TestCase
-from theming import core
-from theming import models
+from theming import core, models
 
 
 @ddt.ddt
@@ -73,7 +80,7 @@ class CoreTests(TestCase):
             expected
         )
 
-    def test_get_all_theme_template_dirs(self):
+    def test_get_all_theme_template_dirs(self):  # pylint: disable=invalid-name
         """
         Verify that get_all_theme_template_dirs works as expected.
         """

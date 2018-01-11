@@ -4,8 +4,8 @@ Test theming middleware.
 
 from django.test import RequestFactory
 
-from test_utils.testcases import TestCase
 from test_utils import factories
+from test_utils.testcases import TestCase
 from theming.middleware import CurrentRequestMiddleware, CurrentThemeMiddleware
 from theming.thread_locals import get_current_request, get_current_theme
 
