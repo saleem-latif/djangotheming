@@ -16,7 +16,7 @@ coverage==4.4.2           # via pytest-cov
 ddt==1.1.1
 diff-cover==1.0.2
 distlib==0.2.6            # via caniusepython3
-django==2.0.1
+django==2.0.0
 factory-boy==2.9.2
 faker==0.8.8              # via factory-boy
 first==2.0.1              # via pip-tools
