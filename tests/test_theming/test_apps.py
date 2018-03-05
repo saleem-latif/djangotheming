@@ -1,5 +1,5 @@
 """
-Module containing tests for ThemingConfig
+Validate ThemingConfig
 """
 import ddt
 from six import assertRaisesRegex
@@ -15,12 +15,12 @@ from theming.exceptions import ImproperlyConfigured
 @ddt.ddt
 class ThemingConfigTests(TestCase):
     """
-    Test ThemingConfig.
+    Validate ThemingConfig.
     """
 
     def setUp(self):
         """
-        Instantiate ThemeConfig instances.
+        Instantiate ThemeConfig instance.
         """
         super(ThemingConfigTests, self).setUp()
         self.theming_config = apps.get_app_config('theming')

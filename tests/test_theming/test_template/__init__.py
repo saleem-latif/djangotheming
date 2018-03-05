@@ -1,0 +1,3 @@
+"""
+Validate theming template library.
+"""

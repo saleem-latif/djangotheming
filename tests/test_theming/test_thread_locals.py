@@ -1,5 +1,5 @@
 """
-Test thread_locals module of theming.
+Validate thread_locals module of theming.
 """
 from functools import partial
 from threading import local

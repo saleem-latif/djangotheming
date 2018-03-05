@@ -1,5 +1,5 @@
 """
-Factories module to hold theming factories.
+Theming Factories.
 """
 import factory
 from factory.django import DjangoModelFactory

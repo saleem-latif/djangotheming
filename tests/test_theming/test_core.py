@@ -1,5 +1,5 @@
 """
-Module containing tests for theming core.
+Validate theming core.
 """
 import os
 
@@ -25,7 +25,7 @@ from theming import core, models
 @ddt.ddt
 class CoreTests(TestCase):
     """
-    Core theming tests.
+    Validate theming core.
     """
 
     @ddt.data(

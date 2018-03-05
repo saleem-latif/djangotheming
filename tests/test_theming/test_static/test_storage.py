@@ -1,5 +1,5 @@
 """
-Tests for theme static files storage classes.
+Tests to validate theme storage classes work as expected..
 """
 import ddt
 
@@ -16,7 +16,7 @@ from theming.static.storage import ThemeStorage
 @override_settings(DEBUG=True)
 class TestThemeStorageDebugMode(TestCase):
     """
-    Test theming static files storage.
+    Test theming storage class on Django DEBUG=True mode.
     """
 
     def setUp(self):
@@ -74,7 +74,7 @@ class TestThemeStorageDebugMode(TestCase):
 @override_settings(DEBUG=False)
 class TestThemeStorageProductionMode(TestCase):
     """
-    Test theming static files storage.
+    Test theming storage class in production (DEBUG=True) mode.
     """
 
     def setUp(self):
@@ -115,7 +115,7 @@ class TestThemeStorageProductionMode(TestCase):
 @override_settings(DEBUG=False)
 class TestThemeStorageCollectStaticMode(TestCase):
     """
-    Test theming static files storage.
+    Test theming storage class work as expected during Django's `./manage.py collectstatic` call.
     """
 
     def setUp(self):

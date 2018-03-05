@@ -1,5 +1,5 @@
 """
-Utility functions for theming tests.
+Utility functions used by the tests in `theming` app.
 """
 from django.test import RequestFactory
 
@@ -8,7 +8,7 @@ from theming.thread_locals import get_current_request, set_current_request, set_
 
 def setup_current_theme(theme, request=None):
     """
-    Set current theme and request in thread locals.
+    Save current request and theme in thread locals to simulate an ongoing Http Request.
 
     Arguments:
         theme (Theme): Theme instance to set.
@@ -23,4 +23,6 @@ def cleanup_current_request_and_theme():  # pylint: disable=invalid-name
     """
     Remove current request and current theme.
     """
+    # Since, theme is saved on the request object,
+    # clearing request object will also clear the theme.
     set_current_request(request=None)

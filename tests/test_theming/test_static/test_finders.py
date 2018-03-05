@@ -1,5 +1,5 @@
 """
-Tests for theme static files finders.
+Tests to validate theme finders work as expected.
 """
 import ddt
 
@@ -24,7 +24,7 @@ class TestThemeFilesFinder(TestCase):
         super(TestThemeFilesFinder, self).setUp()
         self.finder = ThemeFilesFinder()
 
-    def test_find_first_themed_asset(self):
+    def test_find(self):
         """
         Verify Theme Finder returns themed assets
         """
@@ -33,7 +33,7 @@ class TestThemeFilesFinder(TestCase):
 
         self.assertEqual(match, TEST_THEME_DIR / "static" / "styles.css")
 
-    def test_find_all_themed_asset(self):
+    def test_find_all(self):
         """
         Verify Theme Finder returns themed assets
         """

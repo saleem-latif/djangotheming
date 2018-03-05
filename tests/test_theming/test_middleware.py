@@ -1,5 +1,5 @@
 """
-Test theming middleware.
+Validate theming middleware.
 """
 
 from django.test import RequestFactory

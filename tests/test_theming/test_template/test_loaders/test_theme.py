@@ -1,5 +1,5 @@
 """
-Tests for theme template loaders.
+Validate theme template loaders.
 """
 from functools import partial
 
@@ -17,12 +17,12 @@ from theming.template.loaders.theme import Loader
 @ddt.ddt
 class TestLoader(TestCase):
     """
-    Test theming static files finders.
+    Test theming template loaders.
     """
 
     def setUp(self):
         """
-        Setup Loader instance.
+        Setup theming Loader instance.
         """
         super(TestLoader, self).setUp()
         self.engine = Engine(

@@ -1,5 +1,5 @@
 """
-Module containing tests for Theming models.
+Validate theming models.
 """
 from functools import partial
 
