@@ -37,13 +37,13 @@ CHANGELOG = open(os.path.join(base_path, "CHANGELOG.rst")).read()
 REQUIREMENTS = open(os.path.join(base_path, 'requirements', 'base.txt')).read().splitlines()
 
 setup(
-    name="django-theming",
+    name="djangotheming",
     version=VERSION,
     description="""Complete solution for theming your django site.""",
     long_description=README + "\n\n" + CHANGELOG,
     author="Saleem Latif",
     author_email="saleem_ee@hotmail.com",
-    url="https://github.com/saleem-latif/django-theming",
+    url="https://github.com/saleem-latif/djangotheming",
     packages=[
         "theming",
     ],
@@ -60,8 +60,9 @@ setup(
         "Framework :: Django :: 1.10",
         "Framework :: Django :: 1.11",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE v3 (GPLv3)",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
         "Natural Language :: English",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",

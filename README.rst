@@ -1,24 +1,24 @@
 Django Theming
 ==============
 
-.. image:: https://img.shields.io/pypi/v/django-theming.svg
-    :target: https://pypi.python.org/pypi/django-theming/
+.. image:: https://img.shields.io/pypi/v/djangotheming.svg
+    :target: https://pypi.python.org/pypi/djangotheming/
     :alt: PyPI
 
-.. image:: https://travis-ci.org/saleem-latif/django-theming.svg?branch=master
-    :target: https://travis-ci.org/saleem-latif/django-theming
+.. image:: https://travis-ci.org/saleem-latif/djangotheming.svg?branch=master
+    :target: https://travis-ci.org/saleem-latif/djangotheming
     :alt: Travis
 
-.. image:: http://codecov.io/github/saleem-latif/django-theming/coverage.svg?branch=master
-    :target: http://codecov.io/github/saleem-latif/django-theming?branch=master
+.. image:: http://codecov.io/github/saleem-latif/djangotheming/coverage.svg?branch=master
+    :target: http://codecov.io/github/saleem-latif/djangotheming?branch=master
     :alt: Codecov
 
-.. image:: https://img.shields.io/pypi/pyversions/django-theming.svg
-    :target: https://pypi.python.org/pypi/django-theming/
+.. image:: https://img.shields.io/pypi/pyversions/djangotheming.svg
+    :target: https://pypi.python.org/pypi/djangotheming/
     :alt: Supported Python versions
 
-.. image:: https://img.shields.io/github/license/saleem-latif/django-theming.svg
-    :target: https://github.com/saleem-latif/django-theming/blob/master/LICENSE.txt
+.. image:: https://img.shields.io/github/license/saleem-latif/djangotheming.svg
+    :target: https://github.com/saleem-latif/djangotheming/blob/master/LICENSE.txt
     :alt: License
 
 The ``Django Theming`` is a standalone theming solution for django sites. You
