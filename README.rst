@@ -83,11 +83,14 @@ Add ``theming.template.loaders.theme.Loader`` to your ``'TEMPLATES['OPTIONS']['l
 
 
 Set ``'theming.static.storage.ThemeStorage'`` as your ``'STATICFILES_STORAGE'``
-```
-STATICFILES_STORAGE = "theming.static.storage.ThemeStorage"
-```
+
+.. code-block:: python
+
+    STATICFILES_STORAGE = "theming.static.storage.ThemeStorage"
+
 
 Add ``'theming.static.finders.ThemeFilesFinder'`` to your ``'STATICFILES_FINDERS'``
+
 .. code-block:: python
 
     STATICFILES_FINDERS = (
@@ -99,6 +102,7 @@ Add ``'theming.static.finders.ThemeFilesFinder'`` to your ``'STATICFILES_FINDERS
 
 
 Finally, Set the ``'THEMING'`` setting to something like.
+
 .. code-block:: python
 
     #  Theming settings.
