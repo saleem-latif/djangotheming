@@ -27,13 +27,85 @@ can use it customize the look and feel of any of your django site.
 Overview
 --------
 
-The ``README.rst`` file should then provide an overview of the code in this
-repository, including the main components and useful entry points for starting
-to understand the code in more detail.
+Django theming provides a way for django sites owners to customize the look
+and feel of django sites without having to alter the code of the base site.
 
-Documentation
--------------
-Documentation will soon be added for using django theming.
+
+Installation
+------------
+
+Install using pip:
+
+.. code-block:: sh
+
+    pip install djangotheming
+
+Usage
+-----
+
+Add ``'theming'`` to your ``INSTALLED_APPS``.
+
+.. code-block:: python
+
+    INSTALLED_APPS = [
+        ...
+        'theming',
+    ]
+
+Add ``'django.contrib.sites.middleware.CurrentSiteMiddleware'``,
+``'theming.middleware.CurrentRequestMiddleware'`` and
+``'theming.middleware.CurrentThemeMiddleware'`` to your ``MIDDLEWARE``
+
+Add ``theming.template.loaders.theme.Loader`` to your ``'TEMPLATES['OPTIONS']['loaders']'``
+
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+        'APP_DIRS': False,
+        'OPTIONS': {
+            'loaders': [
+                'theming.template.loaders.theme.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+
+Set ``'theming.static.storage.ThemeStorage'`` as your ``'STATICFILES_STORAGE'``
+```
+STATICFILES_STORAGE = "theming.static.storage.ThemeStorage"
+```
+
+Add ``'theming.static.finders.ThemeFilesFinder'`` to your ``'STATICFILES_FINDERS'``
+```
+STATICFILES_FINDERS = (
+    'theming.static.finders.ThemeFilesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+```
+
+Finally, Set the ``'THEMING'`` setting to something like.
+```
+#  Theming settings.
+THEMING = {
+    'ENABLED': True,
+    'DEFAULT': '<theme-name>',
+    'DIRS': [
+        os.path.join(<absolute-path-to-themes-dir>)
+    ],
+}
+```
 
 License
 -------
