@@ -14,6 +14,7 @@ matrix:
       env: TOXENV=quality
 
 script:
+  - make clean
   - tox
 
 cache:
