@@ -44,7 +44,10 @@ class ThemeFilesFinder(BaseFinder):
 
         super(ThemeFilesFinder, self).__init__(*args, **kwargs)
 
-    def check(self, **kwargs):
+    def check(self, **kwargs):  # pylint: disable=unused-argument
+        """
+        Check if current instance data has errors.
+        """
         errors = []
         if 'DIRS' not in settings.THEMING:
             errors.append(Error(

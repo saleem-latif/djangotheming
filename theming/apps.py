@@ -33,27 +33,27 @@ class ThemingConfig(AppConfig):
                 '"THEMING" setting not set in django settings file. '
                 'If you are not using theming then remove it from INSTALLED_APPS.'
             )
-        elif 'DIRS' not in settings.THEMING:
+        if 'DIRS' not in settings.THEMING:
             raise ImproperlyConfigured(
                 'The THEMING["DIRS"] setting must be populated.',
             )
-        elif 'ENABLED' not in settings.THEMING:
+        if 'ENABLED' not in settings.THEMING:
             raise ImproperlyConfigured(
                 'The THEMING["ENABLED"] setting must be populated.',
             )
-        elif not isinstance(settings.THEMING['DIRS'], (list, tuple)):
+        if not isinstance(settings.THEMING['DIRS'], (list, tuple)):
             raise ImproperlyConfigured(
                 'The THEMING["DIRS"] setting is not a tuple or list. Perhaps you forgot a trailing comma?',
             )
-        elif not all([isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']]):
+        if not all([isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']]):
             raise ImproperlyConfigured(
                 'THEMING["DIRS"] must contain only string paths.',
             )
-        elif not all([theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']]):
+        if not all([theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']]):
             raise ImproperlyConfigured(
                 'THEMING["DIRS"] must contain only absolute paths to themes dirs.',
             )
-        elif not all([os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']]):
+        if not all([os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']]):
             raise ImproperlyConfigured(
                 'THEMING["DIRS"] must contain valid paths.',
             )

@@ -73,9 +73,9 @@ class ThemingConfigTests(TestCase):
         """
         del settings.THEMING
         with assertRaisesRegex(
-            self,
-            ImproperlyConfigured,
-            r'"THEMING" setting not set in django settings file. '
-            r'If you are not using theming then remove it from INSTALLED_APPS.'
+                self,
+                ImproperlyConfigured,
+                r'"THEMING" setting not set in django settings file. '
+                r'If you are not using theming then remove it from INSTALLED_APPS.'
         ):
             self.theming_config.ready()
