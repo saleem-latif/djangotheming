@@ -92,6 +92,6 @@ class ThemeStorage(StaticFilesStorage):
             name = name[1:] if name.startswith("/") else name
             path = safe_join(themed_path, name)
             return os.path.exists(path)
+
         # in live mode check static asset in the static files dir defined by "STATIC_ROOT" setting
-        else:
-            return self.exists(os.path.join(theme_name, name))
+        return self.exists(os.path.join(theme_name, name))
