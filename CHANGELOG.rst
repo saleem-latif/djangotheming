@@ -12,6 +12,14 @@ Change Log
 ..
 
 
+[2.0.1] - 2019-10-02
+--------------------
+
+* Removed Python 2 support
+* Added Travis CI checks on PRs and builds.
+* Fixed quality errors
+
+
 [0.1.0] - 2016-10-13
 --------------------
 
