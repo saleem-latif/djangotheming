@@ -1,8 +1,10 @@
 """
 Utility functions for theming tests.
 """
+from __future__ import absolute_import
 
 import os
+
 from path import Path
 
 from django.conf import settings

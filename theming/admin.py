@@ -1,6 +1,8 @@
 """
 Module containing admin interfaces for the theming app.
 """
+from __future__ import absolute_import
+
 from django.contrib import admin
 
 from .models import Theme

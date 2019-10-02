@@ -1,6 +1,7 @@
 """
 Module to contain middleware defined by the theming app.
 """
+from __future__ import absolute_import
 
 from django.utils.deprecation import MiddlewareMixin
 

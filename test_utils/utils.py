@@ -1,6 +1,8 @@
 """
 Utility functions used by the tests in `theming` app.
 """
+from __future__ import absolute_import
+
 from django.test import RequestFactory
 
 from theming.thread_locals import get_current_request, set_current_request, set_current_theme

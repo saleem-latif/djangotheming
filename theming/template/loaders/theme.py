@@ -1,6 +1,7 @@
 """
 Wrapper for loading templates from "templates" directories for themes.
 """
+from __future__ import absolute_import
 
 from django.template.loaders.filesystem import Loader as FilesystemLoader
 

@@ -1,6 +1,8 @@
 """
 Theming Factories.
 """
+from __future__ import absolute_import
+
 import factory
 from factory.django import DjangoModelFactory
 
@@ -14,7 +16,7 @@ class SiteFactory(DjangoModelFactory):
     Factory for django.contrib.sites.models.Site.
     """
 
-    class Meta(object):
+    class Meta:
         model = Site
         django_get_or_create = ('domain',)
 
@@ -27,7 +29,7 @@ class ThemeFactory(DjangoModelFactory):
     Factory for theming.models.Theme.
     """
 
-    class Meta(object):
+    class Meta:
         model = Theme
         django_get_or_create = ('site',)
 

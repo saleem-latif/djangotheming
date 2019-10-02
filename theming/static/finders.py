@@ -3,6 +3,8 @@ Static file finders for Django.
 https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-STATICFILES_FINDERS
 Yes, this interface is private and undocumented, but we need to access it anyway.
 """
+from __future__ import absolute_import
+
 import os
 from collections import OrderedDict
 
@@ -44,7 +46,10 @@ class ThemeFilesFinder(BaseFinder):
 
         super(ThemeFilesFinder, self).__init__(*args, **kwargs)
 
-    def check(self, **kwargs):
+    def check(self, **kwargs):  # pylint: disable=unused-argument
+        """
+        Check if current instance data has errors.
+        """
         errors = []
         if 'DIRS' not in settings.THEMING:
             errors.append(Error(
