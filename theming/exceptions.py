@@ -1,6 +1,8 @@
 """
 Module to contain all of the exceptions defined and used by the theming app.
 """
+from __future__ import absolute_import
+
 from django.core.exceptions import ImproperlyConfigured as DjangoImproperlyConfigured
 
 

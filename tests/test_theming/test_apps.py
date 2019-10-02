@@ -1,6 +1,8 @@
 """
 Validate ThemingConfig
 """
+from __future__ import absolute_import
+
 import ddt
 from six import assertRaisesRegex
 

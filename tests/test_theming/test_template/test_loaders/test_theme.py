@@ -1,6 +1,8 @@
 """
 Validate theme template loaders.
 """
+from __future__ import absolute_import
+
 from functools import partial
 
 import ddt

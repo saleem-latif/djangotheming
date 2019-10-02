@@ -1,6 +1,7 @@
 """
 Validate theming middleware.
 """
+from __future__ import absolute_import
 
 from django.test import RequestFactory
 

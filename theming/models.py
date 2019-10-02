@@ -1,6 +1,7 @@
 """
 Module to contain model definitions for theming app.
 """
+from __future__ import absolute_import
 
 from path import Path
 

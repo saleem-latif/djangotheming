@@ -1,6 +1,8 @@
 """
 Core logic for Theming.
 """
+from __future__ import absolute_import
+
 import os
 
 from path import Path

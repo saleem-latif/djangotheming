@@ -1,6 +1,8 @@
 """
 Validate thread_locals module of theming.
 """
+from __future__ import absolute_import
+
 from functools import partial
 from threading import local
 
