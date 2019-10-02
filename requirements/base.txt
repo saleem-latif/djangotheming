@@ -4,6 +4,12 @@
 #
 #    pip-compile --output-file requirements/base.txt requirements/base.in
 #
-django==1.11.13
-path.py==11.0.1
-pytz==2018.4              # via django
+--index-url https://pypi.org/simple/
+--extra-index-url https://saleem.latif:AP81xRt5DR6ruigseCVZpcYxA1QFyuHvZ4ky6m@intechww.jfrog.io/intechww/api/pypi/pypi-virtual/simple
+
+django==1.11.25
+importlib-metadata==0.23  # via path.py
+more-itertools==7.2.0     # via zipp
+path.py==12.0.1
+pytz==2019.2              # via django
+zipp==0.6.0               # via importlib-metadata
