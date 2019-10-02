@@ -7,7 +7,7 @@ import os
 import re
 import sys
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 
 def get_version(*file_paths):
@@ -22,7 +22,9 @@ def get_version(*file_paths):
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
 
+
 VERSION = get_version("theming", "__init__.py")
+
 
 if sys.argv[-1] == "tag":
     print("Tagging the version on GitHub:")
