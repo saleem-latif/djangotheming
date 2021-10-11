@@ -4,10 +4,9 @@ Validate theming core.
 from __future__ import absolute_import
 
 import os
+from pathlib import Path
 
 import ddt
-from path import Path
-
 from django.test import override_settings
 
 from test_utils import (
@@ -18,7 +17,7 @@ from test_utils import (
     TEST_THEME,
     TEST_THEME_DIR,
     TEST_THEME_TEMPLATES_DIRS,
-    THEME_BASE_DIR,
+    THEME_BASE_DIR
 )
 from test_utils.testcases import TestCase
 from theming import core, models

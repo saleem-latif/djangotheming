@@ -29,7 +29,7 @@ class ThemeStorage(StaticFilesStorage):
 
         self.prefix = prefix
 
-        super(ThemeStorage, self).__init__(
+        super().__init__(
             location=location,
             base_url=base_url,
             file_permissions_mode=file_permissions_mode,
@@ -63,7 +63,7 @@ class ThemeStorage(StaticFilesStorage):
         if prefix and self.themed(name, prefix):
             name = os.path.join(prefix, name)
 
-        return super(ThemeStorage, self).url(name)
+        return super().url(name)
 
     def themed(self, name, theme_name):
         """
@@ -87,7 +87,7 @@ class ThemeStorage(StaticFilesStorage):
                 return False
 
             themed_path = "/".join([
-                themes_location,
+                str(themes_location),
                 theme_name,
                 "static/"
             ])

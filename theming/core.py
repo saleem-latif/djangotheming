@@ -4,8 +4,7 @@ Core logic for Theming.
 from __future__ import absolute_import, division
 
 import os
-
-from path import Path
+from pathlib import Path
 
 from django.conf import settings
 
@@ -79,7 +78,7 @@ def get_all_theme_template_dirs():
     Returns:
         (list): list of directories containing theme templates.
     """
-    template_paths = list()
+    template_paths = []
 
     for theme in get_themes():
         template_paths.extend(
@@ -100,9 +99,8 @@ def get_themes(themes_dir=None):
     Returns:
         list of themes known to the system.
     """
-    # TODO: Fix this
     # Importing here to avoid circular import
-    from theming.models import Theme
+    from theming.models import Theme  # pylint: disable=import-outside-toplevel
 
     themes_dirs = [Path(themes_dir)] if themes_dir else get_theme_base_dirs()
     # pick only directories and discard files in themes directory

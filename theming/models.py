@@ -3,7 +3,7 @@ Module to contain model definitions for theming app.
 """
 from __future__ import absolute_import
 
-from path import Path
+from pathlib import Path
 
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -47,7 +47,7 @@ class Theme(models.Model):
         """
         Return unique readable string for the theme.
         """
-        return u"<Theme: {name} at '{path}'>".format(name=self.name, path=self.path)
+        return f"<Theme: {self.name} at '{self.path}'>"
 
     def __repr__(self):
         """
@@ -60,7 +60,6 @@ class Theme(models.Model):
         """
         Return base directory path for the theme.
         """
-        # TODO: handle theme not found
         return Path(theming.get_base_dir(str(self.name)))
 
     @property

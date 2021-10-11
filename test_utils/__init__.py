@@ -4,14 +4,13 @@ Utility functions for theming tests.
 from __future__ import absolute_import
 
 import os
-
-from path import Path
+from pathlib import Path
 
 from django.conf import settings
 
 # Constants common to all themes
 TEMPLATE_DIR = Path(settings.BASE_DIR) / 'templates'
-THEME_BASE_DIR = settings.THEMING['DIRS'][0]
+THEME_BASE_DIR = Path(settings.THEMING['DIRS'][0])
 
 # Constants for `Test Theme`.
 TEST_THEME = 'test-theme'

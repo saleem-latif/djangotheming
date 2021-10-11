@@ -4,8 +4,6 @@ Validate ThemingConfig
 from __future__ import absolute_import
 
 import ddt
-from six import assertRaisesRegex
-
 from django.apps import apps
 from django.conf import settings
 from django.test import override_settings
@@ -24,7 +22,7 @@ class ThemingConfigTests(TestCase):
         """
         Instantiate ThemeConfig instance.
         """
-        super(ThemingConfigTests, self).setUp()
+        super().setUp()
         self.theming_config = apps.get_app_config('theming')
 
     @ddt.data(
@@ -65,7 +63,7 @@ class ThemingConfigTests(TestCase):
         Verify ThemingConfig ready works as expected.
         """
         with override_settings(**settings_override):
-            with assertRaisesRegex(self, exception, message_regex):
+            with self.assertRaisesRegex(exception, message_regex):
                 self.theming_config.ready()
 
     @override_settings()
@@ -74,8 +72,7 @@ class ThemingConfigTests(TestCase):
         Verify that ThemingConfig ready raises ImproperlyConfigured exception if THEMING setting is not set.
         """
         del settings.THEMING
-        with assertRaisesRegex(
-                self,
+        with self.assertRaisesRegex(
                 ImproperlyConfigured,
                 r'"THEMING" setting not set in django settings file. '
                 r'If you are not using theming then remove it from INSTALLED_APPS.'

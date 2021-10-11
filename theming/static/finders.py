@@ -12,7 +12,6 @@ from django.conf import settings
 from django.contrib.staticfiles import utils
 from django.contrib.staticfiles.finders import BaseFinder
 from django.core.checks import Error
-from django.utils import six
 
 import theming
 from theming.static.storage import ThemeStorage
@@ -44,7 +43,7 @@ class ThemeFilesFinder(BaseFinder):
                 if theme.name not in self.themes:
                     self.themes.append(theme.name)
 
-        super(ThemeFilesFinder, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def check(self, **kwargs):  # pylint: disable=unused-argument
         """
@@ -62,17 +61,17 @@ class ThemeFilesFinder(BaseFinder):
                 hint='Perhaps you forgot a trailing comma?',
                 id='theming.static.E002',
             ))
-        elif not all([isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']]):
+        elif not all(isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']):
             errors.append(Error(
                 'THEMING["DIRS"] must contain only strings.',
                 id='theming.static.E003',
             ))
-        elif not all([theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']]):
+        elif not all(theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']):
             errors.append(Error(
                 'THEMING["DIRS"] must contain only absolute paths to themes dirs.',
                 id='theming.static.E004',
             ))
-        elif not all([os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']]):
+        elif not all(os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']):
             errors.append(Error(
                 'THEMING["DIRS"] must contain valid paths.',
                 id='theming.static.E005',
@@ -83,7 +82,7 @@ class ThemeFilesFinder(BaseFinder):
         """
         List all files in all theme storages.
         """
-        for storage in six.itervalues(self.storages):
+        for storage in self.storages.values():
             if storage.exists(''):  # check if storage location exists
                 for path in utils.get_files(storage, ignore_patterns):
                     yield path, storage

@@ -47,15 +47,15 @@ class ThemingConfig(AppConfig):
             raise ImproperlyConfigured(
                 'The THEMING["DIRS"] setting is not a tuple or list. Perhaps you forgot a trailing comma?',
             )
-        if not all([isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']]):
+        if not all(isinstance(theme_dir, str) for theme_dir in settings.THEMING['DIRS']):
             raise ImproperlyConfigured(
                 'THEMING["DIRS"] must contain only string paths.',
             )
-        if not all([theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']]):
+        if not all(theme_dir.startswith("/") for theme_dir in settings.THEMING['DIRS']):
             raise ImproperlyConfigured(
                 'THEMING["DIRS"] must contain only absolute paths to themes dirs.',
             )
-        if not all([os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']]):
+        if not all(os.path.isdir(theme_dir) for theme_dir in settings.THEMING['DIRS']):
             raise ImproperlyConfigured(
                 'THEMING["DIRS"] must contain valid paths.',
             )
