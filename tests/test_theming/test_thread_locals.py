@@ -7,7 +7,6 @@ from functools import partial
 from threading import local
 
 import ddt
-
 from django.test import RequestFactory
 
 from test_utils import factories
@@ -22,7 +21,7 @@ from theming.thread_locals import (
     set_current_request,
     set_current_theme,
     set_request_variable,
-    set_thread_variable,
+    set_thread_variable
 )
 
 

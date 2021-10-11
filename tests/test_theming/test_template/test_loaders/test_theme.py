@@ -6,7 +6,6 @@ from __future__ import absolute_import
 from functools import partial
 
 import ddt
-
 from django.template.engine import Engine
 
 from test_utils import BLUE_THEME_TEMPLATES_DIRS, TEMPLATE_DIR, TEST_THEME_TEMPLATES_DIRS
@@ -26,7 +25,7 @@ class TestLoader(TestCase):
         """
         Setup theming Loader instance.
         """
-        super(TestLoader, self).setUp()
+        super().setUp()
         self.engine = Engine(
             dirs=[TEMPLATE_DIR],
             loaders=[

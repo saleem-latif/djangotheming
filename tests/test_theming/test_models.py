@@ -7,7 +7,6 @@ from __future__ import absolute_import
 from functools import partial
 
 import ddt
-
 from django.conf import settings
 from django.test import override_settings
 
@@ -88,7 +87,7 @@ class TestModels(TestCase):
         """
         self.assertEqual(
             str(self.theme),
-            u"<Theme: {name} at '{path}'>".format(name=self.theme.name, path=self.theme.path)
+            f"<Theme: {self.theme.name} at '{self.theme.path}'>"
         )
 
     def test_repr(self):
@@ -97,7 +96,7 @@ class TestModels(TestCase):
         """
         self.assertEqual(
             repr(self.theme),
-            u"<Theme: {name} at '{path}'>".format(name=self.theme.name, path=self.theme.path)
+            f"<Theme: {self.theme.name} at '{self.theme.path}'>"
         )
 
     def test_base_dir(self):

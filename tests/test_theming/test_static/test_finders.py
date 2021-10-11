@@ -4,7 +4,6 @@ Tests to validate theme finders work as expected.
 from __future__ import absolute_import
 
 import ddt
-
 from django.core.checks import Error
 from django.test import override_settings
 
@@ -23,7 +22,7 @@ class TestThemeFilesFinder(TestCase):
         """
         Setup TestThemeFilesFinder instance.
         """
-        super(TestThemeFilesFinder, self).setUp()
+        super().setUp()
         self.finder = ThemeFilesFinder()
 
     def test_find(self):
@@ -33,7 +32,7 @@ class TestThemeFilesFinder(TestCase):
         asset = "test-theme/styles.css"
         match = self.finder.find(asset)
 
-        self.assertEqual(match, TEST_THEME_DIR / "static" / "styles.css")
+        self.assertEqual(match, str(TEST_THEME_DIR / "static" / "styles.css"))
 
     def test_find_all(self):
         """
@@ -45,10 +44,10 @@ class TestThemeFilesFinder(TestCase):
         # Make sure only first match was returned
         self.assertEqual(1, len(matches))
 
-        self.assertEqual(matches[0], TEST_THEME_DIR / "static" / "styles.css")
+        self.assertEqual(matches[0], str(TEST_THEME_DIR / "static" / "styles.css"))
 
     @ddt.data(
-        ('test-theme', 'styles.css', TEST_THEME_DIR / "static" / "styles.css"),
+        ('test-theme', 'styles.css', str(TEST_THEME_DIR / "static" / "styles.css")),
         ('test-theme', 'images/spinning.gif', None),
     )
     @ddt.unpack
@@ -130,8 +129,8 @@ class TestThemeFilesFinder(TestCase):
         Verify list returns all themed assets and corresponding storage class.
         """
         expected = {
-            ('styles.css', TEST_THEME, TEST_THEME_STATIC_FILES_DIR),
-            ('styles.css', BLUE_THEME, BLUE_THEME_STATIC_FILES_DIR),
+            ('styles.css', TEST_THEME, str(TEST_THEME_STATIC_FILES_DIR)),
+            ('styles.css', BLUE_THEME, str(BLUE_THEME_STATIC_FILES_DIR)),
         }
         results = self.finder.list(ignore_patterns=None)
         theme_assets = set(map(lambda item: (item[0], item[1].prefix, item[1].location), results))

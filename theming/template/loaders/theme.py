@@ -20,8 +20,7 @@ class Loader(FilesystemLoader):
         Returns:
             (list): A list containing template directories.
         """
-        # TODO: Cache result for faster performance
-        dirs = super(Loader, self).get_dirs()
+        dirs = super().get_dirs()
         theme_dirs = []
 
         if get_current_request():

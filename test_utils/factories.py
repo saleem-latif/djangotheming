@@ -4,9 +4,8 @@ Theming Factories.
 from __future__ import absolute_import
 
 import factory
-from factory.django import DjangoModelFactory
-
 from django.contrib.sites.models import Site
+from factory.django import DjangoModelFactory
 
 from theming.models import Theme
 

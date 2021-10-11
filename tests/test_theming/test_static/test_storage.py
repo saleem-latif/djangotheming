@@ -4,7 +4,6 @@ Tests to validate theme storage classes work as expected..
 from __future__ import absolute_import
 
 import ddt
-
 from django.conf import settings
 from django.test import TestCase, override_settings
 
@@ -25,7 +24,7 @@ class TestThemeStorageDebugMode(TestCase):
         """
         Setup theme storage and current theme.
         """
-        super(TestThemeStorageDebugMode, self).setUp()
+        super().setUp()
         self.storage = ThemeStorage(location=TEST_THEME_STATIC_FILES_DIR)
         self.theme = ThemeFactory(name=TEST_THEME)
         setup_current_theme(self.theme)
@@ -83,7 +82,7 @@ class TestThemeStorageProductionMode(TestCase):
         """
         Setup theme storage.
         """
-        super(TestThemeStorageProductionMode, self).setUp()
+        super().setUp()
         self.storage = ThemeStorage(location=settings.STATIC_ROOT)
 
     @ddt.data(
@@ -124,7 +123,7 @@ class TestThemeStorageCollectStaticMode(TestCase):
         """
         Setup theme storage and current theme.
         """
-        super(TestThemeStorageCollectStaticMode, self).setUp()
+        super().setUp()
         self.storage = ThemeStorage(location=settings.STATIC_ROOT, prefix=TEST_THEME)
 
         # In collectstatic run there won't be a current theme.
