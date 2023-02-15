@@ -4,102 +4,48 @@
 #
 #    pip-compile --output-file=requirements/quality.txt requirements/base.in requirements/quality.in requirements/test.in
 #
-asgiref==3.4.1
-    # via django
 astroid==2.8.2
     # via pylint
-attrs==21.2.0
-    # via pytest
-backports.functools-lru-cache==1.6.4
+backports-functools-lru-cache==1.6.4
     # via caniusepython3
 caniusepython3==7.3.0
-    # via -r requirements/quality.in
+    # via -r quality.in
 certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.6
     # via requests
-coverage[toml]==6.0.1
-    # via pytest-cov
-ddt==1.4.4
-    # via -r requirements/test.in
 distlib==0.3.3
     # via caniusepython3
-django==3.2.8
-    # via -r requirements/base.in
-factory-boy==3.2.0
-    # via -r requirements/test.in
-faker==9.2.0
-    # via factory-boy
 idna==3.2
     # via requests
-iniconfig==1.1.1
-    # via pytest
 isort==5.9.3
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   pylint
 lazy-object-proxy==1.6.0
     # via astroid
 mccabe==0.6.1
     # via pylint
-mock==4.0.3
-    # via -r requirements/test.in
 packaging==21.0
-    # via
-    #   caniusepython3
-    #   pytest
-path==16.2.0
-    # via path.py
-path.py==12.5.0
-    # via -r requirements/base.in
+    # via caniusepython3
 pep8==1.7.1
-    # via -r requirements/quality.in
+    # via -r quality.in
 platformdirs==2.4.0
     # via pylint
-pluggy==1.0.0
-    # via pytest
-py==1.10.0
-    # via pytest
 pycodestyle==2.8.0
-    # via -r requirements/quality.in
+    # via -r quality.in
 pydocstyle==6.1.1
-    # via -r requirements/quality.in
+    # via -r quality.in
 pylint==2.11.1
-    # via -r requirements/quality.in
+    # via -r quality.in
 pyparsing==2.4.7
     # via packaging
-pytest==6.2.5
-    # via
-    #   pytest-cov
-    #   pytest-django
-pytest-cov==3.0.0
-    # via -r requirements/test.in
-pytest-django==4.4.0
-    # via -r requirements/test.in
-python-dateutil==2.8.2
-    # via faker
-pytz==2021.3
-    # via django
 requests==2.26.0
     # via caniusepython3
-six==1.16.0
-    # via python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlparse==0.4.2
-    # via django
-text-unidecode==1.3
-    # via faker
 toml==0.10.2
-    # via
-    #   pylint
-    #   pytest
-tomli==1.2.1
-    # via coverage
-typing-extensions==3.10.0.2
-    # via
-    #   astroid
-    #   pylint
+    # via pylint
 urllib3==1.26.7
     # via requests
 wrapt==1.12.1
